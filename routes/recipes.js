@@ -22,6 +22,9 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+
+
 router.put("/:id", async (req, res) => {
   try {
     const recipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -52,6 +55,10 @@ router.post("/favorite/:id", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+
+
 
 router.get("/dashboard/total-calories", async (req, res) => {
   try {
