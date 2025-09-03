@@ -14,11 +14,7 @@ router.get("/", async (req, res) => {
 
 
 router.post("/", async (req, res) => {
-  console.log("Full req.body:", req.body);
-  console.log("Image field:", req.body.image);
-
-  const { title, calories, ingredients, instructions, image, createdBy } = req.body;
-
+  const { title, calories, ingredients, instructions, image, createdBy} = req.body; 
   try {
     const recipe = new Recipe({ title, calories, ingredients, instructions, image, createdBy });
     await recipe.save();
