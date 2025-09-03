@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
 
 
 
-
 router.post("/", async (req, res) => {
   console.log("Full req.body:", req.body);
   console.log("Image field:", req.body.image);
@@ -28,12 +27,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-
-
-
-
-
 
 router.put("/:id", async (req, res) => {
   try {
