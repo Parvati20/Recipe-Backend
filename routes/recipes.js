@@ -11,16 +11,36 @@ router.get("/", async (req, res) => {
   }
 });
 
+// router.post("/", async (req, res) => {
+//     console.log(req.body);
+//   const { title, calories, ingredients, instructions, image, createdBy } = req.body;
+//   try {
+//     const recipe = new Recipe({ title, calories, ingredients, instructions, image, createdBy });
+//     await recipe.save();
+//     res.json({ message: "Recipe added successfully", recipe });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
+
 router.post("/", async (req, res) => {
-  const { title, calories, ingredients, instructions } = req.body; 
+  console.log("Full req.body:", req.body);
+  console.log("Image field:", req.body.image);
+
+  const { title, calories, ingredients, instructions, image, createdBy } = req.body;
+
   try {
-    const recipe = new Recipe({ title, calories, ingredients, instructions });
+    const recipe = new Recipe({ title, calories, ingredients, instructions, image, createdBy });
     await recipe.save();
     res.json({ message: "Recipe added successfully", recipe });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+
 
 
 
