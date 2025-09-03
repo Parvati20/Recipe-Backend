@@ -12,17 +12,15 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { title, calories, ingredients, instructions } = req.body; 
+  const { title, calories, ingredients, instructions, image } = req.body; 
   try {
-    const recipe = new Recipe({ title, calories, ingredients, instructions });
+    const recipe = new Recipe({ title, calories, ingredients, instructions, image });
     await recipe.save();
     res.json({ message: "Recipe added successfully", recipe });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
-
-
 
 
 router.put("/:id", async (req, res) => {
