@@ -11,6 +11,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+
 router.post("/", async (req, res) => {
   const { title, calories, ingredients, instructions, image, createdBy} = req.body; 
   try {
@@ -21,7 +23,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 router.put("/:id", async (req, res) => {
   try {

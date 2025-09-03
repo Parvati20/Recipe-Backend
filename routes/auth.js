@@ -3,18 +3,26 @@ const router = express.Router();
 const User = require("../models/User");
 
 router.post("/signup", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body; // ✅ username add kiya
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ error: "Email already exists" });
 
-    const user = new User({ name, email, password });
+    const user = new User({ username, email, password });
     await user.save();
-    res.json({ message: "Signup successful", user });
+    res.status(201).json({ message: "User created", user });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+
+
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
