@@ -11,10 +11,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-
-
 router.post("/", async (req, res) => {
-  const { title, calories, ingredients, instructions, image, createdBy} = req.body; 
+  console.log("Full req.body:", req.body);
+  console.log("Image field:", req.body.image);
+
+  const { title, calories, ingredients, instructions, image, createdBy } = req.body;
+
   try {
     const recipe = new Recipe({ title, calories, ingredients, instructions, image, createdBy });
     await recipe.save();
@@ -54,9 +56,6 @@ router.post("/favorite/:id", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-
-
 
 
 router.get("/dashboard/total-calories", async (req, res) => {
